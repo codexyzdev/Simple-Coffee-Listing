@@ -1,0 +1,12 @@
+---
+import CardItem from "./Card-item.astro";
+const urlApi =
+  "https://raw.githubusercontent.com/devchallenges-io/web-project-ideas/main/front-end-projects/data/simple-coffee-listing-data.json";
+const data = await fetch(urlApi);
+const listCoffee = await data.json();
+---
+
+<ul class="mt-7 md:grid grid-cols-2 gap-8 lg:grid-cols-3">
+  {listCoffee.map((coffee) => <CardItem {...coffee} />)}
+</ul>
+<style></style>

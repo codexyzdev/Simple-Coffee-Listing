@@ -1,0 +1,43 @@
+---
+interface Props {
+  id: number;
+  name: string;
+  image: string;
+  price: string;
+  rating: number;
+  votes: number;
+  popular: boolean;
+  available: boolean;
+}
+const { id, name, image, price, rating, votes, popular, available } =
+  Astro.props;
+---
+
+<li data-id={id} class="">
+  <div class="relative">
+    {
+      popular ? (
+        <span class="absolute top-2 left-2 rounded-lg bg-sunnyYellow px-2 py-1">
+          Popular
+        </span>
+      ) : (
+        ""
+      )
+    }
+    <img src={image} alt={name} class="rounded-lg w-full" />
+  </div>
+  <div class="flex justify-between my-3">
+    <h2 class="text-pearlBeige">{name}</h2>
+    <span class="bg-mintGreen px-1 rounded-md">{price}</span>
+  </div>
+  <div class="mb-2 flex justify-between">
+    <div class="flex gap-1">
+      <img src={!rating ? "/Star.svg" : "/Star_fill.svg"} alt="" />
+      <span class="text-pearlBeige">{rating}</span>
+      <span class="text-metallicGray">
+        ({votes} votes)
+      </span>
+    </div>
+    {!available ? <span class="text-coralOrange">Sold out</span> : ""}
+  </div>
+</li>
